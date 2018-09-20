@@ -44,7 +44,7 @@ class Import extends CI_Controller
 			$data = $this->input->post();
 			$data['file'] = $nmFile;
 			//insert ke tabel attach penjualan untuk file yg diupload
-			$ins = $this->db->insert('tb_attach_penjualan',$data);
+			$ins = $this->db->insert('tb_attach_penjualan', $data);
 			//file isi excel insert ke table penjualan member
 			$insert = $this->Mdmember->importExcel('upload_cabang/'.$nmFile);
 			

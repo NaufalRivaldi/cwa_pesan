@@ -21,7 +21,7 @@ class Mdmember extends CI_Model
 		$split = explode('-', $date);
 		return '20'.$split[2]. '-' . $month[$split[1]] . '-'. $split[0];
 	}
-
+	//import penjualan member cabang
 	public function importExcel($files){
 		require_once('phpexcel/excel_reader2.php');
 		require_once('phpexcel/SpreadsheetReader.php');
@@ -59,8 +59,30 @@ class Mdmember extends CI_Model
 			$query = substr($query, 0, -1);
 			$run = $this->db->query($query.";");
 		}
-
 		
+	}
+
+	public function uploadMember($fileName, $tmp){
+		$location = 'upload_member/'.$fileName;
+		move_uploaded_file($tmp, $location);
+		return $fileName;
+	}
+
+	public function insertExcelMember($file){
+		require_once('phpexcel/excel_reader2.php');
+		require_once('phpexcel/SpreadsheetReader.php');
+
+		try {
+			$reader = new SpreadsheetReader($file);
+		} catch(Exception $E){
+			echo $E->getMessage();
+			die();
+		}
+		
+
+		foreach($reader as $data){
+			echo $data[0]. "<br>";
+		}
 	}
 }
 
