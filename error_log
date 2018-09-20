@@ -1,0 +1,7 @@
+[31-May-2017 10:14:07 Asia/Makassar] PHP Fatal error:  Call to a member function quote() on a non-object in /home/cwabali/pesan.cwabali.com/application/models/Mdbackdoor.php on line 78
+[31-May-2017 10:14:43 Asia/Makassar] PHP Fatal error:  Call to a member function quote() on a non-object in /home/cwabali/pesan.cwabali.com/application/models/Mdbackdoor.php on line 78
+[31-May-2017 10:31:50 Asia/Makassar] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::quote() in /home/cwabali/pesan.cwabali.com/application/models/Mdbackdoor.php on line 91
+[14-Jun-2017 10:46:35 Asia/Makassar] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::quote() in /home/cwabali/pesan.cwabali.com/application/controllers/Laporan.php on line 12
+[14-Jun-2017 10:46:43 Asia/Makassar] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::quote() in /home/cwabali/pesan.cwabali.com/application/controllers/Laporan.php on line 12
+[14-Jun-2017 10:55:50 Asia/Makassar] PHP Parse error:  syntax error, unexpected '$cek' (T_VARIABLE) in /home/cwabali/pesan.cwabali.com/application/controllers/Laporan.php on line 63
+[14-Jun-2017 11:27:34 Asia/Makassar] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/cwabali/pesan.cwabali.com/application/controllers/Laporan.php on line 195
