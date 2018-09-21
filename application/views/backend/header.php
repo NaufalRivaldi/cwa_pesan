@@ -15,7 +15,8 @@ if(!isset($menu))
 
 <!-- datatables -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
+<!-- datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script src="js/canvasjs.min.js"></script>
 </head>
@@ -39,6 +40,7 @@ if(!isset($menu))
         <li class="<?=$this->def->compare_output($menu, 2, "active")?>"><a href="backend/statistic">Statistic</a></li>
         <li class="<?=$this->def->compare_output($menu, 3, "active")?>"><a href="backend/scoreboard">Scoreboard</a></li>
         <li class="<?=$this->def->compare_output($menu, 5, "active")?>"><a href="backend/member">Member</a></li>
+        <li class="<?=$this->def->compare_output($menu, 6, "active")?>"><a href="backend/point">Point</a></li>
         <li class="<?=$this->def->compare_output($menu, 4, "active")?>"><a href="backend/karyawan">Karyawan</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
