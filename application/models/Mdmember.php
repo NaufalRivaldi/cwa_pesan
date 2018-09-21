@@ -78,11 +78,28 @@ class Mdmember extends CI_Model
 			echo $E->getMessage();
 			die();
 		}
-		
 
+		//kosongkang table member dulu sebelum insert
+		$truncate = $this->db->query('TRUNCATE member');
+
+		//kalau sudah kosong baru insert lagi, jadi update baru dia.. biar ga kedouble an
+		$query = "INSERT INTO member VALUES ";
 		foreach($reader as $data){
-			echo $data[0]. "<br>";
-		}
+			if($data[0] == 'nomb'){
+				continue;
+			}
+			if($data[6] == '  -   -'){
+				$dates = null;
+				$lastUpdate = null;
+			} else {
+				$dates = $this->dateFormat($data[6]);
+				$lastUpdate = date('Y-m-d H:i:s');
+			}
+			$query .= "('','".$data[0]. "',". "'" .$data[1] ."',". "'" .$data[2] ."',". "'" .$data[3] ."',". "'" .$data[4] ."',". "'" .$data[5] ."',". "'" .$dates ."',". "'" .$lastUpdate ."'),";
+		} 
+
+		$query = substr($query, 0, -1);
+		$this->db->query($query);
 	}
 }
 

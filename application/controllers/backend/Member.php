@@ -15,6 +15,8 @@ class Member extends CI_Controller
 		}
 		else{
 			$data['menu'] = 5;
+			$data['member'] = $this->db->get('member')->result();
+			$data['last_update'] = $this->db->get('member')->row();
 			$data['title'] = "Manage Member";
 			$this->load->view("backend/header",$data);
 			$this->load->view("backend/member");
@@ -29,6 +31,7 @@ class Member extends CI_Controller
 		$upload = $this->mdmember->uploadMember($nmFile, $tmpName);
 		if($upload){
 			$insert_excel = $this->mdmember->insertExcelMember('upload_member/'. $nmFile);
+			$this->def->pesan("success","Berhasil mengupdate Member","backend/member");
 		}
 	}
 }

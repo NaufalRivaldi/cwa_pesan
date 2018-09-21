@@ -12,6 +12,11 @@ if(!isset($menu))
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
 <link rel="stylesheet/less" href="css/admin.less">
+
+<!-- datatables -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+
 <script src="js/canvasjs.min.js"></script>
 </head>
 <body id="admin">
