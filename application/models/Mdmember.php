@@ -98,11 +98,33 @@ class Mdmember extends CI_Model
 				$dates = $this->dateFormat($data[6]);
 				$lastUpdate = date('Y-m-d H:i:s');
 			}
-			$query .= "('','".$data[0]. "',". "'" .$data[1] ."',". "'" .$data[2] ."',". "'" .$data[3] ."',". "'" .$data[4] ."',". "'" .$data[5] ."',". "'" .$dates ."',". "'" .$lastUpdate ."'),";
+			$query .= "('','".$data[0]. "',". "'" .$data[1] ."',". "'" .$data[2] ."',". "'" .$data[3] ."',". "'" .$data[4] ."',". "'" .$data[5] ."',". "'" .$dates ."',". "'" .$data[7] ."',". "'" .$lastUpdate ."'),";
 		} 
 
 		$query = substr($query, 0, -1);
 		$this->db->query($query);
+	}
+
+	public function generatePossibility(){
+		//kosongkan table dulu
+		$del = $this->db->query("TRUNCATE kemungkinan");
+		$date = date('Y-m-d');
+
+		//get all data member & poinnya
+		$data = $this->db->get('member')->result();
+		$ins = "INSERT INTO kemungkinan VALUES ";
+		foreach($data as $row){
+			if($row->total_point != 0) {
+				for($i=1; $i<=$row->total_point; $i++){
+					$ins .= "('', '$row->kdmember', '$date'),";
+				}
+			}
+		}
+
+		$ins = substr($ins, 0, -1);
+
+		
+		$run = $this->db->query($ins.";");
 	}
 }
 

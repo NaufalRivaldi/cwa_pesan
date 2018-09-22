@@ -19,7 +19,7 @@ class Import extends CI_Controller
 		if($uploadStat){
 			$data['keterangan'] = "";
 		} else {
-			$data['keterangan'] = "<b style='color:red'>Anda belum mengupload data penjualan kemarin, harap untuk mengupload sekarang! </b>";
+			$data['keterangan'] = "<b style='color:red'>Anda belum mengupload data penjualan member, harap untuk mengupload sekarang! </b>";
 		}
 
 		$data['title'] = "Import Penjualan";

@@ -24,7 +24,7 @@ if($update[0] != date('Y-m-d')){
 			<th>No Member</th>
 			<th>Nama</th>
 			<th>Registrasi</th>
-			<th>Tanggal</th>
+			<th>Point</th>
 			<th>Details</th>
 		</tr>
 	</thead>
@@ -43,7 +43,7 @@ if($update[0] != date('Y-m-d')){
 			<td><?= $nomb ?></td>
 			<td><?= $rows->nm_member ?></td>
 			<td><?= $rows->lokasi_daftar ?></td>
-			<td><?= $rows->tgl_daftar ?></td>
+			<td><?= $rows->point ?></td>
 			<td><a href="<?= base_url('backend/member?kd_member='.$rows->kdmember) ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a></td>
 		</tr>
 		<?php endforeach ?>
