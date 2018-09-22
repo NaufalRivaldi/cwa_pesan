@@ -28,18 +28,19 @@ class Point extends CI_Controller
 		// echo count($select);
 		// die();
 		$insert = "INSERT INTO score_member VALUES ";
+		
 		foreach($select as $data){
 			//hitung point yang di dapat
 			$point = floor($data->total / 100000);
 			//cek data if it exist just update it 
-			$cek_score = $this->db->where('nmor', $data->nmor);
-			if(!$cek_score){
-				$update = $this->db->query("UPDATE score_member SET 
+			$cek_score = $this->db->where('nmor', $data->nmor)->get('score_member')->row_array();
+			if($cek_score != 0){
+				$update = "UPDATE score_member SET 
 					kdmember = '$data->kdmember', 
 					nmor = '$data->nmor',
 					total = '$data->total',
 					poin = '$point'
-					WHERE nmor = '$data->nmor' ");
+					WHERE nmor = '$data->nmor' ";
 				$stat = 0;
 			} else {
 				$insert .= "('','".$data->kdmember. "',". "'" .$data->nmor ."',". "'" .$data->total ."',". "'" .$point ."'),";
@@ -47,10 +48,12 @@ class Point extends CI_Controller
 			}
 			
 		}
-		
+		//masih error duplicate data;
 		if($stat == 1){
 			$insert = substr($insert, 0, -1);
 			$this->db->query($insert);
+		} else {
+			$this->db->query($update);
 		}
 
 		
