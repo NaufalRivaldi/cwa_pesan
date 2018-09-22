@@ -59,6 +59,9 @@ class Mdmember extends CI_Model
 			$query = substr($query, 0, -1);
 			$run = $this->db->query($query.";");
 		}
+
+		//delete data tidak diperlukan 
+		$delete = $this->db->like('nmbr', 'TINTER')->delete('penjualan_member');
 		
 	}
 

@@ -18,7 +18,7 @@ class Download extends CI_Controller {
 	{
 		$data['title'] = "Download Penjualan";
 		$data['menu'] = 7;
-		$data['file'] = $this->db->group_by('tgl')->order_by('tgl', 'desc')->get('tb_attach_penjualan')->result_array();
+		$data['file'] = $this->db->group_by('tgl')->order_by('tgl', 'desc')->get('attach_penjualan_member')->result_array();
 
 		$this->load->view("header",$data);
 		$this->load->view('download');
@@ -29,7 +29,7 @@ class Download extends CI_Controller {
 	public function list($tgl){
 		$data['title'] = "List Cabang";
 
-		$data['cabang'] = $this->db->where('tgl', $tgl)->get('tb_attach_penjualan')->result_array();
+		$data['cabang'] = $this->db->where('tgl', $tgl)->get('attach_penjualan_member')->result_array();
 
 		$data['menu'] = 7;
 		$this->load->view("header",$data);

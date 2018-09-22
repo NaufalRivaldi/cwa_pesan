@@ -378,7 +378,7 @@ class Def extends CI_Model {
 	public function cek_upload_cabang($user, $tglFile){
 		$q = $this->db->where('username', $user)
 						->like('tgl', $tglFile)
-						->get('tb_attach_penjualan')->row_array();
+						->get('attach_penjualan_member')->row_array();
 		return $q;
 	}
 
