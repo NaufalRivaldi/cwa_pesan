@@ -36,8 +36,19 @@ class Mdmember extends CI_Model
 		$query = "INSERT INTO penjualan_member VALUES ";
 		foreach($reader as $key => $row){
 			if($row[0] == 'nmor'){
+				//kalau kolomnya beda otomatis data salah
+				if($row[2] != 'kdlg'){
+					//hapus dulu data dr tb attach_penjualan_member
+					$path = explode('/', $files);
+					$this->db->where('file', end($path))->delete('attach_penjualan_member');
+					unlink($files);
+					$this->def->pesan("danger", "Upload data gagal, data yang anda upload salah", 'import');
+					
+					
+				}
 				continue;
 			}
+			
 			$query .= "('', '".$row[0]. "','" .$this->dateFormat($row[1]). "','". $row[2] . "','". $row[4] ."','". $row[5] ."','". $row[6] ."','". $row[7] ."','". $row[8] ."','". $row[9] ."','". $row[11] ."','". $row[12] ."','". $row[13] ."','". $row[14] ."'),";
 			if($key < count($reader)){
 				$dateIndex = $this->dateFormat($row[1]); //mewakili tanggal
@@ -88,9 +99,11 @@ class Mdmember extends CI_Model
 		//kalau sudah kosong baru insert lagi, jadi update baru dia.. biar ga kedouble an
 		$query = "INSERT INTO member VALUES ";
 		foreach($reader as $data){
+			//skip baris pertama
 			if($data[0] == 'nomb'){
 				continue;
 			}
+			//format tanggal null
 			if($data[6] == '  -   -'){
 				$dates = null;
 				$lastUpdate = null;

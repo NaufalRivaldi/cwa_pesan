@@ -11,7 +11,7 @@ class Import extends CI_Controller
 	}
 	public function index()
 	{
-		echo date('Ymd');
+
 		$user = $this->def->get_current('username');
 		$date = date('Y-m-d');
 		
@@ -40,23 +40,27 @@ class Import extends CI_Controller
 
 		$nmFile = explode(".", $_FILES['attach']['name']);
 		$tmpName = $_FILES['attach']['tmp_name'];
-		//rename file
 
+
+
+		//rename file
 		$newFileName = 'Penjualan Member '.strtoupper($users[0]). '_'. date('Ymd') .'.' . end($nmFile);
+
+
 
 		//uplaod file excel
 		$upload = $this->crud->uploadPenjualan($newFileName, $tmpName);
 		if($upload){
-			$data = $this->input->post();
-			$data['file'] = $newFileName;
-			//insert ke tabel attach penjualan untuk file yg diupload
-			$ins = $this->db->insert('attach_penjualan_member', $data);
-			//file isi excel insert ke table penjualan member
-			$insert = $this->Mdmember->importExcel('upload_cabang/'.$newFileName);
-			
 			$files = explode('.', $newFileName);
-
-			$this->def->pesan("success", "Berhasil upload data $files[0] ", "import");
+		
+				$data = $this->input->post();
+				$data['file'] = $newFileName;
+				//insert ke tabel attach penjualan untuk file yg diupload
+				$ins = $this->db->insert('attach_penjualan_member', $data);
+				//file isi excel insert ke table penjualan member
+				$insert = $this->Mdmember->importExcel('upload_cabang/'.$newFileName);
+				$this->def->pesan("success", "Berhasil upload data $files[0] ", "import");
+			
 		} else {
 			$this->def->pesan("error", "Data gagal diupload ", "import");
 		}
