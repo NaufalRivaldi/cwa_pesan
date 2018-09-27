@@ -392,7 +392,7 @@ class Def extends CI_Model {
 		if($karyawans){
 			foreach ($karyawans as $karyawan) {
 			
-			$teks = $teks ." ". $karyawan['nama_lengkap'].", ";
+			$teks = $teks ." ". $karyawan['nama_lengkap']." (".$karyawan['devisi'].")". ", ";
 				
 			}
 			$teksUltah = rtrim($teks, ", ");

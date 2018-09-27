@@ -73,14 +73,7 @@
 			</li>
 	
 
-			<?php if ($this->def->get_current("level") == "sa"): ?>
-			<li class="<?=$this->def->compare_output($menu,7,"active")?>">
-				<a href="download">
-					<span class="fa fa-fw fa-download"></span>
-					<span class="label">Download Penjualan</span>
-				</a>
-			</li>
-			<?php endif ?>
+			
 			
 		</ul>
 	</nav>

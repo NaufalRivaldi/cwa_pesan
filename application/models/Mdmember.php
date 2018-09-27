@@ -21,6 +21,18 @@ class Mdmember extends CI_Model
 		$split = explode('-', $date);
 		return '20'.$split[2]. '-' . $month[$split[1]] . '-'. $split[0];
 	}
+
+	public function uploadPenjualan($filename, $tmp){
+		$ext = explode('.', $filename);
+		if($ext[1] <> 'xlsx'){
+			$this->def->pesan("danger", "Upload data gagal, hanya dapat mengupload format xlsx ", "import");
+			return false;
+		}
+		$loc = 'upload_cabang/'. $filename;
+		move_uploaded_file($tmp, $loc);
+		return $filename;
+	}
+
 	//import penjualan member cabang
 	public function importExcel($files){
 		require_once('phpexcel/excel_reader2.php');
@@ -35,51 +47,73 @@ class Mdmember extends CI_Model
 
 		$query = "INSERT INTO penjualan_member VALUES ";
 		foreach($reader as $key => $row){
-			if($row[0] == 'nmor'){
+			if($row[0] == 'nmor' ){
 				//kalau kolomnya beda otomatis data salah
 				if($row[2] != 'kdlg'){
 					//hapus dulu data dr tb attach_penjualan_member
 					$path = explode('/', $files);
 					$this->db->where('file', end($path))->delete('attach_penjualan_member');
 					unlink($files);
-					$this->def->pesan("danger", "Upload data gagal, data yang anda upload salah", 'import');
-					
+					$this->def->pesan("danger", "Upload data gagal, data yang anda upload bukan penjualan member", 'import');
 					
 				}
 				continue;
+			} 	
+			// kalau data sudah ada update;
+			$nmor = $this->db->where('nmor', $row[0])->where('nmbr', $row[5])->get('penjualan_member')->row_array();
+			if($nmor != 0){
+				$action = 0;
+				$update = "UPDATE penjualan_member SET nmor = '$row[0]', 
+							tggl = '".$this->dateFormat($row[1])."',
+							kdmember = '$row[2]',
+							kdbr = '$row[4]',
+							nmbr = '$row[5]',
+							juml = '$row[6]',
+							hrga = '$row[7]',
+							ttal = '$row[8]',
+							kdmr = '$row[9]',
+							kdkm = '$row[11]',
+							kdjn = '$row[12]',
+							kdgd = '$row[13]',
+							kdsl = '$row[14]'
+							where id = '$nmor[id]'
+							
+				";
+			} else {
+				$action = 1;
+				$query .= "('', '".$row[0]. "','" .$this->dateFormat($row[1]). "','". $row[2] . "','". $row[4] ."','". $row[5] ."','". $row[6] ."','". $row[7] ."','". $row[8] ."','". $row[9] ."','". $row[11] ."','". $row[12] ."','". $row[13] ."','". $row[14] ."'),";
+				
 			}
 			
-			$query .= "('', '".$row[0]. "','" .$this->dateFormat($row[1]). "','". $row[2] . "','". $row[4] ."','". $row[5] ."','". $row[6] ."','". $row[7] ."','". $row[8] ."','". $row[9] ."','". $row[11] ."','". $row[12] ."','". $row[13] ."','". $row[14] ."'),";
-			if($key < count($reader)){
-				$dateIndex = $this->dateFormat($row[1]); //mewakili tanggal
-				$cabangIndex = $row[13]; // mewakili cabang
-			}
+			
 
 		}
-		//agar data tidak numpuk kalo user lupa sudah insert tapi malah insert lagi.
-		$cek = $this->db->where('tggl', $dateIndex)->where('kdgd', $cabangIndex)->get('penjualan_member');
-		if($cek->num_rows() > 0){
-			//sudah pernah import delete dulu 
-			$cek->row_array();
-			$this->db->where('tggl', $dateIndex)->where('kdgd', $cabangIndex)->delete('penjualan_member');
-			//insert lagi,
+
+		if($action == 1){
 			$query = substr($query, 0, -1);
 			$run = $this->db->query($query.";");
 		} else {
-			//langsung insert saja kalo tidak pernah
-			$query = substr($query, 0, -1);
-			$run = $this->db->query($query.";");
+			$this->db->query($update);
 		}
+
+		
 
 		//delete data tidak diperlukan 
 		$delete = $this->db->like('nmbr', 'TINTER')->delete('penjualan_member');
 		
 	}
 
-	public function uploadMember($fileName, $tmp){
-		$location = 'upload_member/'.$fileName;
-		move_uploaded_file($tmp, $location);
-		return $fileName;
+	public function uploadMember($filename, $tmp){
+		$ext = explode('.', $filename);
+		if($ext[1] <> 'xlsx'){
+			$this->def->pesan("danger", "Upload data gagal, hanya dapat mengupload format xlsx ", "backend/member");
+			return false;
+		}
+		$loc = 'upload_member/'. $filename;
+		move_uploaded_file($tmp, $loc);
+		return $filename;
+
+		
 	}
 
 	public function insertExcelMember($file){
@@ -111,6 +145,7 @@ class Mdmember extends CI_Model
 				$dates = $this->dateFormat($data[6]);
 				$lastUpdate = date('Y-m-d H:i:s');
 			}
+
 			$query .= "('','".$data[0]. "',". "'" .$data[1] ."',". "'" .$data[2] ."',". "'" .$data[3] ."',". "'" .$data[4] ."',". "'" .$data[5] ."',". "'" .$dates ."',". "'" .$data[7] ."',". "'" .$lastUpdate ."'),";
 		} 
 

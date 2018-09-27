@@ -41,15 +41,11 @@ class Import extends CI_Controller
 		$nmFile = explode(".", $_FILES['attach']['name']);
 		$tmpName = $_FILES['attach']['tmp_name'];
 
-
-
 		//rename file
 		$newFileName = 'Penjualan Member '.strtoupper($users[0]). '_'. date('Ymd') .'.' . end($nmFile);
 
-
-
 		//uplaod file excel
-		$upload = $this->crud->uploadPenjualan($newFileName, $tmpName);
+		$upload = $this->Mdmember->uploadPenjualan($newFileName, $tmpName);
 		if($upload){
 			$files = explode('.', $newFileName);
 		

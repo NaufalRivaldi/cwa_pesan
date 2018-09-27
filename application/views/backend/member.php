@@ -1,4 +1,8 @@
 <h3>Update Member</h3>
+<?php if($last_update->last_updated == null) { 
+	$last_update = '0000-00-00';
+}
+	?>
 <p>Last Update : <?= $last_update->last_updated ?> </p>
 <?php 
 $update = explode(' ', $last_update->last_updated);
@@ -50,6 +54,7 @@ if($update[0] != date('Y-m-d')){
 	</tbody>
 	
 </table>
+<br><br>
 <!-- Modal -->
 
 <?php 

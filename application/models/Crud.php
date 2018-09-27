@@ -92,16 +92,7 @@ class Crud extends CI_Model {
 		return $nmfile;
 	}
 
-	public function uploadPenjualan($filename, $tmp){
-		$ext = explode('.', $filename);
-		if($ext[1] <> 'xlsx'){
-			$this->def->pesan("danger", "Upload data gagal, hanya dapat mengupload format xlsx ", "import");
-			return false;
-		}
-		$loc = 'upload_cabang/'. $filename;
-		move_uploaded_file($tmp, $loc);
-		return $filename;
-	}
+	
 
 	public function rollback_upload($fname){
 		if(file_exists("upload/".$fname)){

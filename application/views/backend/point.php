@@ -1,5 +1,5 @@
 
-<div class="row">
+<!-- <div class="row">
 	<div class="jumbotron">
 		<div class="row">
 			<div class="col-md-12">
@@ -23,7 +23,7 @@
 			</div>
 		</form>
 	</div>
-</div>
+</div> -->
 
 
 <div class="row">
@@ -40,11 +40,11 @@
 			<tbody>
 				<?php $no=1; foreach($file as $row) { 
 					$dateYesterday = date('Y-m-d', strtotime('-1 day', strtotime($row['tgl'])));
-					$tglIndo = date("d-m-Y", strtotime($dateYesterday))
+					$tglIndo = date("d-m-Y", strtotime($row['tgl']))
 					?>
 					<tr>
 						<td><?=$no++?></td>
-						<td><?= $dateYesterday ?></td>
+						<td><?= $tglIndo ?></td>
 						<td><a href="<?= base_url('backend/point/check/'. $row['tgl']) ?>" class="btn btn-sm btn-primary">Check</a></td>
 					</tr>
 				<?php } ?>
