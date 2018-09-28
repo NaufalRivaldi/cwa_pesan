@@ -68,10 +68,16 @@
 			<li class="<?=$this->def->compare_output($menu,6,"active")?>">
 				<a href="import">
 					<span class="fa fa-fw fa-file"></span>
-					<span class="label">Import Penjualan</span>
+					<span class="label">Penjualan Member</span>
 				</a>
 			</li>
-	
+
+			<li class="<?=$this->def->compare_output($menu,7,"active")?>">
+				<a href="kirim">
+					<span class="fa fa-fw fa-database"></span>
+					<span class="label">Kirim Data ke Pusat</span>
+				</a>
+			</li>
 
 			
 			

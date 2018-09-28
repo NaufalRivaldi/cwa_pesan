@@ -103,7 +103,7 @@ $(function(){
 		width : "100%"
 	});
 
-	$("input[type=file]").simpleFilePreview();
+	$("#file").simpleFilePreview();
 
 
 
