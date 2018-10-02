@@ -2,17 +2,18 @@
 
 class Mdkirim extends CI_Model
 {
-	public function do_upload(){
-		$config['upload_path'] = './kirim_pusat/';
-		$config['allowed_types']= 'c01|c02|c03|c04|c05|c06|c07|c08|c09|ca0|ca1|ca2|ca3|ca4|ca5|ca6|ca7';
-		$this->load->library('upload', $config);
-		if(!$this->upload->do_upload('file')){
-			$error = array('error' => $this->upload->display_errors());
+	public function do_upload($fileName, $tmp){
+		$format = ['xlsx', 'pdf', 'XLS', 'jpg', 'png', 'docx', 'csv'];
+	
+		$ext = explode('.', $fileName);
+		if(in_array($ext[1], $format)){
+			$this->def->pesan('danger', 'Format data yang diupload salah!', 'kirim');
 			return false;
-		} else {
-			$data = array('upload_data' => $this->upload->data());
-			return true;
 		}
+
+		$loc = 'kirim_pusat/'.$fileName;
+		move_uploaded_file($tmp, $loc);
+		return true;
 	}
 }
 

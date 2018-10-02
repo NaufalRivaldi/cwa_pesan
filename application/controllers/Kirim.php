@@ -6,6 +6,7 @@ class Kirim extends CI_Controller
 		if($this->def->cek_login()){
 			$data['title'] = "Kirim Data ke Pusat";
 			$data['menu'] = 7;
+			$data['kirim'] = $this->db->where('username', $this->def->get_current('username'))->order_by('nama', 'desc')->get('kirim_pusat')->result();
 			$this->load->view("header",$data);
 			$this->load->view("kirim-data");
 			$this->load->view("footer");
@@ -17,16 +18,25 @@ class Kirim extends CI_Controller
 
 	public function upload(){
 		$this->load->model('mdkirim');
+		$data = $this->input->post();
 		$file = explode('.', $_FILES['file']['name']);
-		$tanggal = date('Y-m-d');
-		$nama = $file[0];
-		$format = $file[1];
+		$data['tanggal'] = date('Y-m-d');
+		$data['nama'] = $file[0];
+		$data['format'] = $file[1];
 		$file_name = $_FILES['file']['name'];
-		$user = $this->def->get_current('username');
+		$tmp = $_FILES['file']['tmp_name'];
+		$data['username'] = $this->def->get_current('username');
 
-		
+		$uploads = $this->mdkirim->do_upload($file_name, $tmp);
+		if($uploads){
+			//kalo upload sukses masukan ke db
+			
+			$data['file_name'] = $file_name;
 
+			$this->db->insert('kirim_pusat', $data);
 
+			$this->def->pesan("success", "Data berhasil diupload ", "kirim");
+		} 
 
 	}
 }

@@ -78,15 +78,23 @@
 					<span class="label">Kirim Data ke Pusat</span>
 				</a>
 			</li>
-
+			
+			<?php if($this->def->is_finance($this->def->get_current('username'))): ?>
+			<li class="<?=$this->def->compare_output($menu,8,"active")?>">
+				<a href="kirim">
+					<span class="fa fa-fw fa-info"></span>
+					<span class="label">Menu Finance</span>
+				</a>
+			</li>
+			<?php endif ?>
 			
 			
 		</ul>
 	</nav>
 
 	<div class="copyright">
-		&copy; 2016;
-		Christian Rosandhy
+		&copy; 2018;
+		Tian X Refo
 	</div>
 </header>
 	<?php 

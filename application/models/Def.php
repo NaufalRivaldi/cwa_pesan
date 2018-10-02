@@ -406,4 +406,15 @@ class Def extends CI_Model {
 		
 		echo $ultah;
 	}
+
+
+	public function is_finance($account){
+		$user = explode('@', $account);
+
+		if($user[0] == 'finance'){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
