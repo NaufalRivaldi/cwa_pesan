@@ -81,7 +81,7 @@
 			
 			<?php if($this->def->is_finance($this->def->get_current('username'))): ?>
 			<li class="<?=$this->def->compare_output($menu,8,"active")?>">
-				<a href="kirim">
+				<a href="finance">
 					<span class="fa fa-fw fa-info"></span>
 					<span class="label">Menu Finance</span>
 				</a>

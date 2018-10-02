@@ -27,7 +27,6 @@
 		</thead>
 		<tbody>
 			<?php 
-			
 			$no = 1; foreach($kirim as $row):
 			?>
 			<tr>
