@@ -1,17 +1,17 @@
-<p><?= $ultah ?> <i class="fa fa-gift"></i> <i class="far fa-smile-beam"></i> <i class="fa fa-heart"></i></p>
-<h2>Data Karyawan</h2>
-<a class="btn btn-primary toggle_trigger" href="<?= base_url('backend/karyawan/create') ?>">
+
+<h2>Data Karyawan Ultah Bulan <?= date('m') ?></h2>
+<a class="btn btn-primary toggle_trigger" href="<?= base_url('backend/ultah/create') ?>">
 	<span class="fa fa-plus"></span>
 	Tambah Karyawan
 </a>
-
+<br><br>
 <table class="table data table-striped">
 		<thead>
 			<tr>
 				<th>No</th>
 				<th>Nama Lengkap</th>
 				<th>TTL</th>
-				<th>Action</th>
+				<th>Devisi</th>
 			</tr>
 		</thead>
 		<tbody>

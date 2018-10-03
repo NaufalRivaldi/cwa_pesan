@@ -41,7 +41,7 @@ if(!isset($menu))
         <li class="<?=$this->def->compare_output($menu, 3, "active")?>"><a href="backend/scoreboard">Scoreboard</a></li>
         <li class="<?=$this->def->compare_output($menu, 5, "active")?>"><a href="backend/member">Member</a></li>
         <li class="<?=$this->def->compare_output($menu, 6, "active")?>"><a href="backend/point">Point</a></li>
-        <li class="<?=$this->def->compare_output($menu, 4, "active")?>"><a href="backend/karyawan">Karyawan</a></li>
+        <li class="<?=$this->def->compare_output($menu, 4, "active")?>"><a href="backend/ultah">Ultah</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="fa fa-sign-out"></span> Log Out</a></li>
