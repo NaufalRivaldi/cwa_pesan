@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="js/DataTable/buttons.dataTables.min.css">
 	<link rel="stylesheet" href="js/DataTable/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" href="img/icon.jpg">
 </head>
 <body>
 

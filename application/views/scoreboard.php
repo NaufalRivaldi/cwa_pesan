@@ -132,7 +132,7 @@ if(isset($_GET['dari']) and isset($_GET['sampai'])){
 					<td><a href='$url' class='block full-row'></a>".$this->mdlaporan->better_division($row['divisi'])."</td>
 					<td>
 						<a href='$url' class='block full-row'></a>
-						<strong>$row[total_skor]</strong>
+						<strong>".number_format($row['total_skor'])."</strong>
 						<div class=\"progress\">
 						  <div class=\"progress-bar progress-bar-$cl progress-bar-striped active\" role=\"progressbar\"
 						  aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$width\">
@@ -180,7 +180,7 @@ if(isset($_GET['dari']) and isset($_GET['sampai'])){
     				<td><a href='$url' class='block full-row'></a>".$this->mdlaporan->better_division($key)."</td>
     				<td>
     					<a href='$url' class='block full-row'></a>
-    						<strong>$val[skor]</strong>
+    						<strong>".number_format($val['skor'])."</strong>
     						<div class=\"progress\">
     						  <div class=\"progress-bar progress-bar-$cl progress-bar-striped active\" role=\"progressbar\"
     						  aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$w\">
@@ -214,7 +214,7 @@ if(isset($_GET['dari']) and isset($_GET['sampai'])){
 			<td></div>
 			<td></div>
 			<td align='right'>Total Skor : </div>
-			<td><strong>$sum</strong></div>
+			<td><strong>".number_format($sum)."</strong></div>
 		</tr>
 		</tfoot>
 		";
