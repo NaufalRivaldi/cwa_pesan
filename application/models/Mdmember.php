@@ -174,6 +174,17 @@ class Mdmember extends CI_Model
 		
 		$run = $this->db->query($ins.";");
 	}
+
+	public function upload_dbf($name, $tmp){
+		$ext = explode('.', $name);
+		if($ext[1] <> 'dbf'){
+			$this->def->pesan("danger", "Upload data gagal, hanya dapat mengupload format dbf ", "update_member");
+			return false;
+		}
+		$loc = 'upload_dbf/'. $name;
+		move_uploaded_file($tmp, $loc);
+		return true;
+	}
 }
 
  ?>
