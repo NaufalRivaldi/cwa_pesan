@@ -4,14 +4,17 @@ class Ultah extends CI_Controller
 {
 	
 	public function index(){
-		$data['menu'] = 4;
-		$data['title'] = "Data Karyawan Ultah";
-		$data['karyawan'] = $this->db->order_by('nama_lengkap', 'asc')->get('ultah')->result_array();
-		
-		
-		$this->load->view("backend/header",$data);
-		$this->load->view("backend/ultah");
-		$this->load->view("backend/footer");
+		$this->load->model('mdbackdoor');
+		if(!$this->mdbackdoor->cek_login()){
+			$this->load->view('login');
+		} else {	
+			$data['menu'] = 4;
+			$data['title'] = "Data Karyawan Ultah";
+			$data['karyawan'] = $this->db->order_by('nama_lengkap', 'asc')->get('ultah')->result_array();
+			$this->load->view("backend/header",$data);
+			$this->load->view("backend/ultah");
+			$this->load->view("backend/footer");	
+		}
 	}
 
 	public function create(){

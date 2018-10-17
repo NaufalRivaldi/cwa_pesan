@@ -61,13 +61,22 @@ class Mdultah Extends CI_Model
 
 		$query = "INSERT INTO ultah VALUES ";
 		foreach($reader as $data){
-			$query .= "('','".$data[0]. "',". "'" .$this->convert($data[1]) ."',". "'" .$data[2] ."'),";
+
+			$tgl = $this->convert($data[1]);
+			if($tgl == false){
+				
+				die();
+			} else {
+				$query .= "('','".$data[0]. "',". "'" .$tgl ."',". "'" .$data[2] ."'),";
+			}
+			
 		}
 
 		$query = substr($query, 0,-1);
 		$this->db->query($query);
 
-		$this->db->like("ttl", ', --')->delete('ultah');
+		$this->db->where("nama_lengkap", '')->delete('ultah');
+		$this->db->where("nama_lengkap", 'NAMA')->delete('ultah');
 	}
 }
 

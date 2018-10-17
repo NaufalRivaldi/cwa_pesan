@@ -32,8 +32,13 @@ class Kirim extends CI_Controller
 			//kalo upload sukses masukan ke db
 			
 			$data['file_name'] = $file_name;
-
-			$this->db->insert('kirim_pusat', $data);
+			$cek = $this->db->where('file_name', $file_name)->get('kirim_pusat')->row_array();
+			
+			if(!$cek){
+				$this->db->insert('kirim_pusat', $data);
+			} else {
+				$this->db->where('file_name', $file_name)->update('kirim_pusat', $data);
+			}
 
 			$this->def->pesan("success", "Data berhasil diupload ", "kirim");
 		} 

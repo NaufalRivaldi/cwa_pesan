@@ -2,7 +2,7 @@
 <h2>Data Karyawan Ultah Bulan <?= date('m') ?></h2>
 <a class="btn btn-primary toggle_trigger" href="<?= base_url('backend/ultah/create') ?>">
 	<span class="fa fa-plus"></span>
-	Tambah Karyawan
+	Update Ultah
 </a>
 <br><br>
 <table class="table data table-striped">

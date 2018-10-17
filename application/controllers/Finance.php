@@ -16,14 +16,14 @@ class Finance extends CI_Controller
 
 	public function index(){
 		$data['menu'] = 8;
-		$data['files'] = $this->db->query("SELECT * FROM kirim_pusat group by nama order by nama")->result();
+		$data['files'] = $this->db->query("SELECT * FROM kirim_pusat group by nama order by nama desc")->result();
 		$this->load->view('header', $data);
 		$this->load->view('finance');
 		$this->load->view('footer');
 	}
 
 	public function check($param){
-		$data['data'] = $this->db->where('nama', $param)->get('kirim_pusat')->result();
+		$data['data'] = $this->db->where('nama', $param)->order_by('format', 'asc')->get('kirim_pusat')->result();
 		$data['menu'] = 8;
 		$this->load->view('header', $data);
 		$this->load->view('check_kirim');

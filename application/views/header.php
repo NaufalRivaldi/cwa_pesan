@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="js/DataTable/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="icon" href="img/icon.jpg">
+	<!-- datepicker -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 
@@ -65,7 +67,7 @@
 					<span class="label">Ubah Password</span>
 				</a>
 			</li>
-
+			<?php if($this->def->cabang_only($this->def->get_current('username'))): ?>
 			<li class="<?=$this->def->compare_output($menu,6,"active")?>">
 				<a href="import">
 					<span class="fa fa-fw fa-file"></span>
@@ -79,12 +81,22 @@
 					<span class="label">Kirim Data ke Pusat</span>
 				</a>
 			</li>
+			<?php endif ?>
 			
 			<?php if($this->def->is_finance($this->def->get_current('username'))): ?>
 			<li class="<?=$this->def->compare_output($menu,8,"active")?>">
 				<a href="finance">
 					<span class="fa fa-fw fa-info"></span>
 					<span class="label">Menu Finance</span>
+				</a>
+			</li>
+			<?php endif ?>
+
+			<?php if($this->def->checkUser($this->def->get_current('username'))): ?>
+			<li class="<?=$this->def->compare_output($menu,9,"active")?>">
+				<a href="update_member">
+					<span class="fa fa-fw fa-cloud-download"></span>
+					<span class="label">Update Member</span>
 				</a>
 			</li>
 			<?php endif ?>
