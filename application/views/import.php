@@ -1,4 +1,4 @@
-<h3>Import Penjualan pada tanggal kemarin (<?= date('d-m-Y'); ?>)</h3>
+<h3>Import Penjualan Member</h3>
 <hr>
 <div class="row">
 	<form action="import/store" method="post" enctype="multipart/form-data">

@@ -61,15 +61,7 @@ class Mdultah Extends CI_Model
 
 		$query = "INSERT INTO ultah VALUES ";
 		foreach($reader as $data){
-
-			$tgl = $this->convert($data[1]);
-			if($tgl == false){
-				
-				die();
-			} else {
-				$query .= "('','".$data[0]. "',". "'" .$tgl ."',". "'" .$data[2] ."'),";
-			}
-			
+			$query .= "('','".$data[0]. "',". "'" .$data[1] ."',". "'" .$data[2] ."'),";
 		}
 
 		$query = substr($query, 0,-1);

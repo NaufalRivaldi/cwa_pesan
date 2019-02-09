@@ -386,7 +386,7 @@ class Def extends CI_Model {
 
 	//function ultah 
 	public function ultah(){
-		//ini coding nampilin ultah
+		//ini coding nampilin ultah 
 		$karyawans= $this->db->like('ttl', date('m-d'))->get('ultah')->result_array();;
 		$teks = "Selamat Ulang Tahun <b>";
 		if($karyawans){
@@ -413,6 +413,8 @@ class Def extends CI_Model {
 
 		if($user[0] == 'finance'){
 			return true;
+		} else if($user[0] == 'it'){
+			return true;
 		} else {
 			return false;
 		}
@@ -435,5 +437,10 @@ class Def extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function character($data){
+		$char = explode("@", $data);
+		return $char[0];
 	}
 }

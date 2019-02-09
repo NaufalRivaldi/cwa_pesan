@@ -193,6 +193,7 @@ class Mdlaporan extends CI_Model {
 		foreach($run->result_array() as $row){
 			$arr[] = $row['divisi'];
 		}
+		
 		return $arr;
 	}
 
@@ -281,7 +282,8 @@ class Mdlaporan extends CI_Model {
 			"CA6" => "Citra Warna 16",
 			"CA7" => "Citra Warna 17",
 			"CA8" => "Citra Warna 18",
-			"CA9" => "Citra Warna 19"
+			"CA9" => "Citra Warna 19",
+			"CL1" => "Citra Warna Lombok 1"
 		);
 
 		if(isset($list[$input]))

@@ -60,4 +60,11 @@ class Action extends CI_Controller {
 	    }
 	    
 	}
+
+	public function update($id){
+		$user = $id."@cwabali.com";
+		$username = $this->input->post('username');
+		$this->db->query("UPDATE tb_admin SET name = '$username' WHERE username = '$user'");
+		$this->def->pesan("success","Berhasil mengedit user","backend/home");
+	}
 }

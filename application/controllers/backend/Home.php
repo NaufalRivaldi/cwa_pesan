@@ -189,6 +189,17 @@ class Home extends CI_Controller {
 
 	}
 
+	public function edit($id){
+		$data['menu'] = 1;
+		$data['title'] = "Edit User";
+		$data['user'] = $this->db->query("SELECT * FROM tb_admin WHERE username like '%$id%' ")->row();
+		$this->load->view("backend/header", $data);
+		$this->load->view("backend/edit_user", $data);
+		$this->load->view("backend/footer");
+	}
+
+
+
 	public function addproses(){
 		$this->load->model("mdbackdoor");
 		if(!$this->mdbackdoor->cek_login()){

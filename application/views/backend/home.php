@@ -63,13 +63,14 @@
 				$stat = "<span class='label label-danger'>Nonaktif</span>";
 				$trclass = 'trhide';
 			}
-
+			$exp = explode("@", $row['username']);
 			echo "
 			<tr class='$trclass'>
 				<td>$row[username]</td>
 				<td>$row[name]</td>
 				<td>$stat</td>
 				<td>
+					<a href='backend/home/edit/$exp[0]' class='btn btn-primary'>Edit User</a>
 					$action
 					<a href='backend/action/reset?email=$row[username]' class='btn btn-primary'>Reset Password</a>
 				</td>
