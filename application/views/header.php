@@ -100,8 +100,16 @@
 				</a>
 			</li>
 			<?php endif ?>
-			
-			
+
+			<?php if($this->def->is_master($this->def->get_current('username'))): ?>
+			<li class="<?=$this->def->compare_output($menu,10,"active")?>">
+				<a href="update_master">
+					<span class="fa fa-fw fa-cloud-download"></span>
+					<span class="label">Update Master</span>
+				</a>
+			</li>
+			<?php endif ?>
+
 		</ul>
 	</nav>
 
