@@ -430,6 +430,16 @@ class Def extends CI_Model {
 		}
 	}
 
+	public function is_PU($akun){
+		$user = explode("@", $akun);
+
+		if(strpos($user[0], 'cw') !== false || $user[0] == "it" || $user[0] == "purchasing"){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function is_master($akun){
 		$user = explode("@", $akun);
 

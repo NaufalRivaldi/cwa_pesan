@@ -2,13 +2,13 @@
 <hr>
 <p>Last update : <b> <?= date('d-m-Y', strtotime($last_update->tgl)) ?> </b></p>
 
-<?php if($this->def->get_current('username') == "it@cwabali.com"): ?>
+<?php if($this->def->get_current('username') == "it@cwabali.com" || $this->def->get_current('username') == "gudang@cwabali.com"): ?>
 <div class="row">
 	<div class="col-md-6">
 		<form action="update_master/store" method="post" enctype="multipart/form-data">
 			<br>
-			<input type="file" name="file1" class="form-control" required>
-			<input type="file" name="file2" class="form-control" required>
+			<input type="file" name="file" class="form-control" rdequired>
+			<p class="text text-warning">Format file harus .rar</p>
 			<br>
 			<input type="submit" class="btn btn-success">
 		</form>
@@ -31,7 +31,7 @@
 				<tr>
 					<td><?= $no++ ?></td>
 					<td><?= $row->file_name ?></td>
-					<td><a href="<?= base_url('upload_dbf/'.$row->file_name) ?>" class="btn btn-primary btn-sm">Download</a></td>
+					<td><a href="<?= base_url('upload_master/'.$row->file_name) ?>" class="btn btn-primary btn-sm">Download</a></td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>

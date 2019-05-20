@@ -53,6 +53,16 @@
 -->
 				</a>
 			</li>
+			
+			<li class="<?=$this->def->compare_output($menu,11,"active")?>">
+				<a href="total_penjualan">
+				<span class="fa fa-fw fa-star"></span>
+				<span class="label">Total Penjualan</span>
+<!--
+				<span class="new">New</span>
+-->
+				</a>
+			</li>
 
 			<li class="<?=$this->def->compare_output($menu,3,"active")?>">
 				<a href="trash">
@@ -115,7 +125,7 @@
 
 	<div class="copyright">
 		&copy; 2018;
-		Tian X Refo
+		Tian X Naufal
 	</div>
 </header>
 	<?php 

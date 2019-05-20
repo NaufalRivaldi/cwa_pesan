@@ -17,56 +17,35 @@ class Update_master extends CI_Controller
 	public function index(){
 		$data['menu'] = 10;
 		$data['title'] = "Update Master";
-		$data['file'] = $this->db->get('file_dbf')->result();
-		$data['last_update'] = $this->db->get('file_dbf')->row();
+		$data['file'] = $this->db->get('file_master')->result();
+		$data['last_update'] = $this->db->get('file_master')->row();
 		$this->load->view('header', $data);
 		$this->load->view('update_master');
 		$this->load->view('footer');
 	}
 
 	public function store(){
-		$this->load->model('mdmember');
-		$tmp1 = $_FILES['file1']['tmp_name'];
-		$name1 = $_FILES['file1']['name'];
+		$this->load->model('mdmaster');
+		$tmp = $_FILES['file']['tmp_name'];
+		$name = $_FILES['file']['name'];
 
-		$tmp2 = $_FILES['file2']['tmp_name'];
-		$name2 = $_FILES['file2']['name'];
+		$upload = $this->mdmaster->upload_master($name, $tmp);
+		if($upload){
+			$name = 'data-master.rar';
+			$data['file_name'] = $name;
+			$data['tgl'] = date('Y-m-d');
 
-		if($name1 == $name2){
-			$this->def->pesan("danger", "Harap mengupload 2 file yang berbeda", "update_member");
-		} else {
-			$upload1 = $this->mdmember->upload_dbf($name1, $tmp1);
-			$upload2 = $this->mdmember->upload_dbf($name2, $tmp2);
-			if($upload1 && $upload2){
-				$data1['file_name'] = $name1;
-				$data1['tgl'] = date('Y-m-d');
-
-				$data2['file_name'] = $name2;
-				$data2['tgl'] = date('Y-m-d');
-
-				$search1 = $this->db->where('file_name', $name1)->get('file_dbf')->row();
-				if(!$search1){
-					$this->db->insert('file_dbf', $data1);
-				} else {
-					$this->db->where('file_name', $search1->file_name)->update('file_dbf', $data1);
-				}
-
-				$search2 = $this->db->where('file_name', $name2)->get('file_dbf')->row();
-				if(!$search2){
-					$this->db->insert('file_dbf', $data2);
-				} else {
-					$this->db->where('file_name', $search2->file_name)->update('file_dbf', $data2);
-				}
-				
-				$this->def->pesan("success", "Berhasil upload data ", "update_member");
+			$search = $this->db->where('file_name', $name)->get('file_master')->row();
+			if(!$search){
+				$this->db->insert('file_master', $data);
 			} else {
-				$this->def->pesan("danger", "Upload gagal, coba lagi!", "update_member");
+				$this->db->where('file_name', $search->file_name)->update('file_master', $data);
 			}
+			
+			$this->def->pesan("success", "Berhasil upload data ", "update_master");
+		} else {
+			$this->def->pesan("danger", "Upload gagal, coba lagi!", "update_master");
 		}
-
-		
-
-		
 	}
 }
 

@@ -66,7 +66,7 @@ class Mdbackdoor extends CI_Model {
 
 		$ins = "INSERT INTO tb_history_jual VALUES ";
 		foreach($skor as $sk){
-			$ins .= "(null, ".$this->db->escape($sk['kd_sales']).", ".$this->db->escape($sk['tgl']).", ".$this->db->escape($sk['divisi']).", ".$this->db->escape($sk['kd_barang']).", ".$this->db->escape($sk['jml']).", ".$this->db->escape($sk['skor'])."), ";
+			$ins .= "(null, ".$this->db->escape($sk['kd_sales']).", ".$this->db->escape($sk['tgl']).", ".$this->db->escape($sk['divisi']).", ".$this->db->escape($sk['kd_barang']).", ".$this->db->escape($sk['jml']).", ".$this->db->escape($sk['skor']).", ".$this->db->escape($sk['brt'])."), ";
 		}
 		$ins = substr($ins, 0, -2);
 		$run = $this->db->query($ins);

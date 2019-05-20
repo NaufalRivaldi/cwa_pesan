@@ -213,6 +213,25 @@ class Mdlaporan extends CI_Model {
 		return $run->result_array();
 	}
 
+	public function total_penjualan($tgl_awal, $tgl_akhir, $divisi){
+		if(empty($divisi)){
+			$sql = "SELECT SUM(a.jml*a.brt) AS ttl_jml, a.divisi FROM tb_history_jual a LEFT JOIN tb_kode_barang b ON a.kd_barang = b.kdbr WHERE a.tgl BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY(a.divisi) ORDER BY(ttl_jml) DESC";
+		}else{
+			$sql = "SELECT SUM(a.jml*a.brt) AS ttl_jml, a.divisi FROM tb_history_jual a LEFT JOIN tb_kode_barang b ON a.kd_barang = b.kdbr WHERE a.tgl BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.divisi LIKE '$divisi' GROUP BY(a.divisi)";
+		}
+		
+
+		$run = $this->db->query($sql);
+		return $run->result_array();
+	}
+
+	public function total_penjualan_detail($tgl_awal, $tgl_akhir, $divisi){
+		$sql = "SELECT a.divisi, SUM(a.jml) as jml, SUM(a.jml*a.brt) AS total, a.kd_barang, b.mrbr FROM tb_history_jual a INNER JOIN tb_kode_barang b ON a.kd_barang = b.kdbr WHERE a.tgl BETWEEN ".$this->db->escape($tgl_awal)." AND ".$this->db->escape($tgl_akhir)." AND a.divisi = '$divisi' GROUP BY(b.mrbr)
+		";
+
+		$run = $this->db->query($sql);
+		return $run->result_array();
+	}
 
 	public function get_score($tgl_a, $tgl_b, $divisi){
 		$ifand = "";
