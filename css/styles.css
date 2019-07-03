@@ -175,7 +175,7 @@ a:hover {
 }
 
 .side-main {
-  padding: 20px;
+  padding: 0 1.5% 1.5% 1.5%;
   background: #f7f7f7;
   position: absolute;
   width: 100%;
@@ -596,10 +596,12 @@ form.search button {
 }
 
 .head-info {
-  width: 100%;
+  background: #FFF;
+  width: 81%;
+  position: fixed;
+  z-index: 9;
   border-bottom: 3px solid #ccc;
   padding: .5em 0;
-  margin-bottom: 1.5em;
 }
 
 .cke_contents_ltr blockquote,

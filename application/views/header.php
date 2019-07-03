@@ -147,7 +147,7 @@
 		</div>
 
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top:8%;">
 	<?=$this->def->msghandling()?>
 	<?php $this->def->page_record();?>
 	<?php
