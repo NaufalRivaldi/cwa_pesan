@@ -1,6 +1,6 @@
 <h3>Update Data Master</h3>
 <hr>
-<p>Last update : <b> <?= date('d-m-Y', strtotime($last_update->tgl)) ?> </b></p>
+<p>Last update : <b> <?= date('d-m-Y H:i:s', strtotime($last_update->tgl)) ?> </b></p>
 
 <?php if($this->def->get_current('username') == "it@cwabali.com" || $this->def->get_current('username') == "gudang@cwabali.com"): ?>
 <div class="row">

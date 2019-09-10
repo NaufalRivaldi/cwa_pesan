@@ -102,15 +102,6 @@
 			</li>
 			<?php endif ?>
 
-			<?php if($this->def->checkUser($this->def->get_current('username'))): ?>
-			<li class="<?=$this->def->compare_output($menu,9,"active")?>">
-				<a href="update_member">
-					<span class="fa fa-fw fa-cloud-download"></span>
-					<span class="label">Update Member</span>
-				</a>
-			</li>
-			<?php endif ?>
-
 			<?php if($this->def->is_master($this->def->get_current('username'))): ?>
 			<li class="<?=$this->def->compare_output($menu,10,"active")?>">
 				<a href="update_master">

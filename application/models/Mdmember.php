@@ -67,7 +67,7 @@ class Mdmember extends CI_Model
 							tggl = '".$this->dateFormat($row[1])."',
 							kdmember = '$row[2]',
 							kdbr = '$row[4]',
-							nmbr = '$row[5]',
+							nmbr = '".str_replace("'", ' ', $row[5])."',
 							juml = '$row[6]',
 							hrga = '$row[7]',
 							ttal = '$row[8]',

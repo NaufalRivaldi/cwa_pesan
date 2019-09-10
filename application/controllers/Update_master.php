@@ -33,7 +33,7 @@ class Update_master extends CI_Controller
 		if($upload){
 			$name = 'data-master.rar';
 			$data['file_name'] = $name;
-			$data['tgl'] = date('Y-m-d');
+			$data['tgl'] = date('Y-m-d H:i:s');
 
 			$search = $this->db->where('file_name', $name)->get('file_master')->row();
 			if(!$search){
